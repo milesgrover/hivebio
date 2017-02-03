@@ -77,8 +77,8 @@ module.exports = function (grunt) {
         },
         watch: {
             dev: {
-                files: [paths.src.root + '/**/*.scss'],
-                tasks: ['sass', 'cssmin', 'bell']
+                files: [paths.src.root + '/**'],
+                tasks: ['sass', 'postcss', 'copy:html', 'copy:assets', 'bell']
             }
         },
         clean: {
@@ -98,6 +98,18 @@ module.exports = function (grunt) {
             },
             dist: {
                 src: 'dist/stylesheets/HiveBio.css'
+            }
+        },
+        copy: {
+            assets: {
+                files: [
+                    {expand: true, flatten: true, src: ['src/HTML/assets/**'], dest: 'dist/assets/'}
+                ]
+            },
+            html: {
+                files: [
+                    {expand: true, flatten: true, src: ['src/HTML/**/*.html'], dest: 'dist/'}
+                ]
             }
         }
     });
@@ -119,6 +131,6 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['build']);
 
     // build tasks: default builds dev files, prod builds everything for production, justjs quickly builds JS changes
-    grunt.registerTask('build', ['clean:dist', 'sass', 'postcss', 'bell']);
+    grunt.registerTask('build', ['clean:dist', 'sass', 'postcss', 'copy:html', 'copy:assets', 'bell']);
 
 }

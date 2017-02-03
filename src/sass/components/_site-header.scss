@@ -8,16 +8,35 @@
     }
 
     @media (min-width: $screen-sm-min) {
-        padding: 30px 0;
 
         img {
             margin: 0;
             height: auto;
         }
 
+        .hb-logo {
+            img {
+                max-height: 100px;
+            }
+        }
+
+        .hb-decoration {
+            img {
+                max-height: 62px;
+            }
+        }
+
         .row {
             display: flex;
             align-items: center;
+        }
+    }
+
+    @media (min-width: $screen-md-min) {
+        padding: 30px 0;
+
+        img {
+            max-height: none !important;
         }
     }
 }

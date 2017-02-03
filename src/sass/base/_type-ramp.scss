@@ -1,0 +1,13 @@
+@mixin responsive-type($name) {
+    font-size: map-get(map-get($type-size, $name), "xs");
+    
+    @media (min-width: $screen-sm-min) {
+      font-size: map-get(map-get($type-size, $name), "sm");
+    }
+    @media (min-width: $screen-md-min) {
+        font-size: map-get(map-get($type-size, $name), "md");
+    }
+    @media (min-width: $screen-lg-min) {
+        font-size: map-get(map-get($type-size, $name), "lg");
+    }
+}

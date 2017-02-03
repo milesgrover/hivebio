@@ -1,0 +1,38 @@
+.nav-secondary {
+    display: none;
+
+    &.is-selected {
+        display: block;
+        background-color: $brand-primary-darker;
+        padding: 16px 0 12px 0;
+        font-family: $font-serif;
+        color: $text-dim;
+
+        ul {
+            list-style: none;
+            font-size: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            margin-top: 0;
+            margin-bottom: 0;
+            white-space: nowrap;
+        }
+
+        li {
+            @include responsive-type("nav-secondary");
+            line-height: 1;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-right: 50px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+}

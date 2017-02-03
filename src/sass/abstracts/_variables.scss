@@ -1,0 +1,22 @@
+// Typefaces
+$font-serif: "Rokkitt", serif;
+$font-sans:  "Poppins", sans-serif;
+
+// Default text size (calculate rems)
+$browser-default-font-size: 16px;
+
+// Type ramp
+$type-size: (
+    "nav-primary": (
+        "xs": rem(32px),
+        "sm": rem(21px),
+        "md": rem(26px),
+        "lg": rem(32px)
+    ),
+    "nav-secondary": (
+        "xs": rem(24px),
+        "sm": rem(16px),
+        "md": rem(20px),
+        "lg": rem(24px)
+    )
+)
