@@ -1,0 +1,59 @@
+// Shapes created in CSS
+
+// Hexagon
+// Width: in pixels, but don't include unit
+// Color: hex value but don't include hash
+@mixin generate-hexagon($width, $color) {
+    $height: $width / sqrt(3) * 1px;
+
+    .hexagon {
+        position: relative;
+
+        &:before,
+        &:after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left-style: solid;
+            border-left-color: transparent;
+            border-right-style: solid;
+            border-right-color: transparent;
+        }
+
+        &:before {
+            bottom: 100%;
+            border-bottom-style: solid;
+            border-bottom-color: addHash($color);
+        }
+
+        &:after {
+            top: 100%;
+            width: 0;
+            border-top-style: solid;
+            border-top-color: addHash($color);
+        }
+
+        &.hexagon-#{$width}-#{$color} {
+            width: $width * 1px;
+            height: $height;
+            background-color: addHash($color);
+            margin-top: $height / 2;
+
+            &:before,
+            &:after {
+                border-left-width: $width / 2 * 1px;
+                border-right-width: $width / 2 * 1px;
+            }
+
+            &:before {
+                border-bottom-width: $height / 2;
+            }
+
+            &:after {
+                border-top-width: $height / 2;
+            }
+        }
+    }
+}
+
+@include generate-hexagon(10, ffffff);

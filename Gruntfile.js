@@ -78,7 +78,7 @@ module.exports = function (grunt) {
         watch: {
             dev: {
                 files: [paths.src.root + '/**'],
-                tasks: ['sass', 'postcss', 'copy:html', 'copy:assets', 'bell']
+                tasks: ['build']
             }
         },
         clean: {
@@ -103,12 +103,18 @@ module.exports = function (grunt) {
         copy: {
             assets: {
                 files: [
-                    {expand: true, flatten: true, src: ['src/HTML/assets/**'], dest: 'dist/assets/'}
+                    {expand: true, flatten: true, src: ['src/HTML/assets/**'], dest: 'dist/assets/'},
+                    {expand: true, flatten: false, cwd: 'node_modules/bootstrap-sass/assets/fonts/', src: ['**'], dest: 'dist/fonts/'}
                 ]
             },
             html: {
                 files: [
                     {expand: true, flatten: true, src: ['src/HTML/**/*.html'], dest: 'dist/'}
+                ]
+            },
+            scripts: {
+                files: [
+                    {expand: true, flatten: true, src: ['src/scripts/**/*.js'], dest: 'dist/scripts/'}
                 ]
             }
         }
@@ -131,6 +137,6 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['build']);
 
     // build tasks: default builds dev files, prod builds everything for production, justjs quickly builds JS changes
-    grunt.registerTask('build', ['clean:dist', 'sass', 'postcss', 'copy:html', 'copy:assets', 'bell']);
+    grunt.registerTask('build', ['clean:dist', 'sass', 'postcss', 'copy:html', 'copy:assets', 'copy:scripts', 'bell']);
 
 }

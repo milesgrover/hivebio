@@ -16,6 +16,24 @@
   @return mix(black, $color, $percentage);
 }
 
+// Convert px font sizes to rem
 @function rem($size) {
     @return ($size / $browser-default-font-size) * 1rem;
+}
+
+// Calculate a square root
+@function sqrt($r) {
+  $x0: 1;
+  $x1: $x0;
+
+  @for $i from 1 through 10 {
+    $x1: $x0 - ($x0 * $x0 - abs($r)) / (2 * $x0);
+    $x0: $x1;
+  }
+
+  @return $x1;
+}
+
+@function addHash($c) {
+    @return unquote("#")+$c;
 }

@@ -1,18 +1,14 @@
 .nav-primary {
     background-color: $brand-primary-dark;
-    padding: 16px 0 12px 0;
     font-family: $font-serif;
     color: $text-bright;
 
     ul {
         list-style: none;
         font-size: 0;
-        padding-top: 0;
-        padding-bottom: 0;
-        margin-top: 0;
-        margin-bottom: 0;
+        padding: 16px 0 12px 0;
+        margin: 0;
         white-space: nowrap;
-        // text-align: center;
     }
 
     li {
@@ -20,32 +16,10 @@
         line-height: 1;
         text-transform: uppercase;
         display: inline-block;
+        vertical-align: middle;
         position: relative;
 
-        &:after {
-            display: none;
-
-            @media (min-width: $screen-sm-min) {
-                content: url(../assets/shape-hexagon-nav.png);
-                display: inline-block;
-                position: relative;
-                padding: 0 9px;
-                top: -1px;
-            }
-            @media (min-width: $screen-md-min) {
-                padding: 0 18px;
-                top: -2px;
-            }
-            @media (min-width: $screen-lg-min) {
-                padding: 0 20px;
-                top: -4px;
-            }
-        }
-
         &:last-child {
-            &:after {
-                display: none;
-            }
 
             &.is-selected {
                 &:before {
@@ -81,9 +55,40 @@
         text-decoration: none;
     }
 
+    .divider {
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+        top: -3px;
 
-    @media (min-width: $screen-sm-min) {
-
-
+        @media (min-width: $screen-sm-min) {
+            margin-right: 9px;
+            margin-left: 9px;
+        }
+        @media (min-width: $screen-md-min) {
+            margin-right: 18px;
+            margin-left: 18px;
+        }
+        @media (min-width: $screen-lg-min) {
+            margin-right: 20px;
+            margin-left: 20px;
+        }
     }
+
+    .nav-pan-right,
+    .nav-pan-left {
+        background-color: $brand-primary-dark;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        line-height: 66px;
+    }
+
+    .nav-pan-left {
+        left: -10px;
+    }
+    .nav-pan-right {
+        right: -10px;
+    }
+
 }
