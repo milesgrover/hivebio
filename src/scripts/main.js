@@ -51,7 +51,6 @@ $(function () {
 	// Check sizes of nav on load
 	$navPrimary.checkSizes();
 
-    if(checkWidthsDiff > 0) {
         // In case there are multiple, we do this on each nav-primary
         $navPrimary.each(function() { // !!!!!!!!!!! TO DO !!!!!!!!!!!! make this into function to use for subnav too
             var $this = $(this);
@@ -64,7 +63,9 @@ $(function () {
             .prepend("<button class='nav-pan-left'><span class='glyphicon glyphicon-chevron-left' aria-hidden='true'></button>");
 
             // Show the right scroll button if the list is too wide
-            $(".nav-pan-right").css("display", "block");
+            if(checkWidthsDiff > 0) {
+                $(".nav-pan-right").css("display", "block");
+            }
 
             // When you scroll the list (horizontally)
             $navList.on("scroll", function() {
@@ -86,9 +87,14 @@ $(function () {
                         }
                     }, 250);
                 }
-                else { // list is scrolled somewhere in the middle
+                else if (0 < listScrollLeft < checkWidthsDiff) { // list is scrolled somewhere in the middle
                     $(".nav-pan-right").css("display", "block");
                     $(".nav-pan-left").css("display", "block");
+                }
+                
+                if (checkWidthsDiff <= 0) {
+                    $(".nav-pan-right").css("display", "");
+                    $(".nav-pan-left").css("display", "");
                 }
         });
     });
@@ -113,16 +119,14 @@ $(function () {
     }).on("mouseup", function() {
         scrolling = false; // stop scrolling function
     });
-}
 
 	// When the window is resized
     $(window).on("resize", function() {
 		$navPrimary.checkSizes(); // check sizes again
 
-        if(checkWidthsDiff > 0) {
-            $navPrimary.each(function() {
-                $(this).find("ul").scrollLeft(0);
-            });
-        }
+        $navPrimary.each(function() {
+            $(this).find("ul").scrollLeft(0);
+            $(this).find("ul").trigger("scroll");
+        });
 	});
 });

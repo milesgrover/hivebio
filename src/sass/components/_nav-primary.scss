@@ -1,6 +1,7 @@
 .nav-primary {
     background-color: $brand-primary-dark;
     font-family: $font-serif;
+    // letter-spacing: -(rem(1.5px));
     color: $text-bright;
 
     > * {
